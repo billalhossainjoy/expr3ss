@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const url = require('url')
 const app = express()
 const hbs = require('hbs')
 
@@ -19,11 +20,19 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/about',(req,res)=>{
-    res.render('./layouts/about')
+    res.render('./layouts/about',{
+        pageTitle: req.url
+    })
 })
 
 app.get('/projects',(req,res)=>{
     res.render('./layouts/projects')
+})
+app.get('/Contact',(req,res)=>{
+    res.render('./layouts/Contact')
+})
+app.get('/info',(req,res)=>{
+    res.render('./layouts/info')
 })
 
 app.get('/',(req,res)=>{
@@ -37,5 +46,4 @@ app.get('*',(req,res)=>{
 app.listen(app.config.port, app.config.host,()=>{
     console.log(`server running on http://${app.config.host}:${app.config.port}`)
 })
-
 

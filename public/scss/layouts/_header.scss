@@ -26,9 +26,12 @@ header {
     ul {
         li {
             transition: .5s;
+            padding: 15px 0;
 
             a {
                 font-weight: 600;
+                color: white;
+                padding: 16px !important;
             }
         }
 
@@ -36,7 +39,7 @@ header {
             background-color: skyblue;
 
             a {
-                color: rebeccapurple !important;
+                color: white !important;
             }
         }
 

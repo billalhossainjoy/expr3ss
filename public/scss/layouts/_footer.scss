@@ -1,0 +1,56 @@
+footer{
+    margin-top: auto;
+}
+
+.footer2, .footer3{
+   h1{
+    font-size: 25px;
+   }
+   h6{
+    font-size: 16px;
+    color: rgba(37, 37, 37, 0.801);
+   }
+}
+.footer4{
+    overflow: hidden;
+    .subscribe{
+        width: 306px;
+    }
+    input{
+        outline:none;
+        border-radius: 200px;
+        padding: 5px;
+        padding-right: 35px;
+        width: 200px;
+        padding-left: 14px;
+        border: none;
+        background-color: skyblue;
+    }
+    button{
+        padding: 5px;
+        border: none;
+        background-color: rebeccapurple;
+        color: white;
+        font-family: arial;
+        font-weight: lighter;
+        position: relative;
+        left: -25px;
+        top: -1px;
+        border-radius: 50px 50px 50px 0px;
+        width: 100px;
+    }
+}
+
+
+
+.copyRight{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    h1{
+        font-size: 16px;
+        font-family: arial;
+        font-weight: lighter;
+    }
+}
