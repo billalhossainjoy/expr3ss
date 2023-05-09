@@ -2,7 +2,8 @@ const express = require('express')
 const path = require('path')
 const url = require('url')
 const app = express()
-const hbs = require('hbs')
+const hbs = require('hbs') // handle bars
+
 
 app.use(express.static('public'))
 
@@ -24,7 +25,6 @@ app.get('/about',(req,res)=>{
         pageTitle: req.url
     })
 })
-
 app.get('/projects',(req,res)=>{
     res.render('./layouts/projects')
 })
