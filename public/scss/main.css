@@ -1,5 +1,7 @@
 header {
   background-color: rebeccapurple;
+  position: sticky;
+  top: 0;
 }
 
 .webLogo {
@@ -95,6 +97,46 @@ footer {
   font-size: 16px;
   font-family: arial;
   font-weight: lighter;
+}
+
+.mForm {
+  width: 400px;
+  border: 1px solid rgb(88, 88, 88);
+}
+.mForm .formTitle {
+  background-color: rebeccapurple;
+  color: white;
+  top: 0;
+  padding: 20px;
+}
+.mForm .formTitle h1 {
+  font-size: 30px;
+}
+.mForm form {
+  padding: 30px;
+}
+.mForm form label {
+  font-weight: bold;
+}
+.mForm form input {
+  padding: 3px;
+  margin-bottom: 20px;
+}
+.mForm form button {
+  display: inline !important;
+  width: 153px;
+  padding: 7px;
+  background: rebeccapurple;
+  color: white;
+  font-weight: bold;
+  border: 1px solid rebeccapurple;
+  transition: 0.4s;
+  margin-top: 15px;
+}
+.mForm form button:hover {
+  background-color: white;
+  border: 1px solid rebeccapurple !important;
+  color: rebeccapurple;
 }
 
 * {
