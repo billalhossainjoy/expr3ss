@@ -4,9 +4,13 @@ const path = require('path')
 const url = require('url')
 const app = express()
 const ejs = require('ejs') // handle bars
-const MongodbServerLink = 'mongodb://127.0.0.1:27017/Useraccount'
+const mongoAtlas = "mongodb+srv://billalhossainjoy:billalhossain@cluster0.ivs0qnu.mongodb.net/myapp?retryWrites=true&w=majority"
+const MongodbServerLink = 'mongodb://127.0.0.1:27017/Usersaccount'
 
-mongoose.connect(MongodbServerLink).then(() => console.log(`MongoDB server cunnection succesfully....`)).catch((err) => console.log(err))
+mongoose.connect(MongodbServerLink, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log(`MongoDB server cunnection succesfully....`)).catch((err) => console.log(err))
 
 const userInfo = mongoose.Schema({
     firstName: {
@@ -15,11 +19,18 @@ const userInfo = mongoose.Schema({
     lastName: {
         type: String
     },
+    roll: {
+        type:Number
+    },
     email: {
         type: String
     },
     passowrd: {
         type: String
+    },
+    techcode: {
+        type: Number,
+        default: 85,
     },
     insertDate: {
         type: Date,
@@ -27,7 +38,7 @@ const userInfo = mongoose.Schema({
     }
 })
 
-const users = mongoose.model("Slist", userInfo)
+const users = mongoose.model("User", userInfo)
 
 
 
@@ -47,20 +58,24 @@ app.config = {
 }
 
 app.get('/', (req, res) => {
-    res.render('./layouts/home')
-})
+    // fatch data 
+    const getData = async () => {
+        try {
+            const data = await users.find({roll:50})
+            res.render('./layouts/home', {
+                firstName: data[0].firstName,
+                lastName: data[0].lastName
+            })
+        } catch (err) {
+            console.log(`error is : ${err}`)
+        }
+    }
 
-app.post('/post', (req, res) => {
-    const user = new users({
-        name: req.body.name,
-        roll: req.body.roll,
-        semester: req.body.semester,
-        shift: req.body.shift,
-        Depertment: req.body.Depertment,
-        techCode: req.body.techCode
-    })
-    console.log(student)
-    student.save()
+    getData()
+
+
+
+   
 })
 
 app.get('/about', (req, res) => {
@@ -83,13 +98,15 @@ app.get('/register', (req, res) => {
     res.render('./layouts/register')
 })
 app.post('/register', (req, res) => {
-    const user = new users ({
+    const user = new users({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         passowrd: req.body.passowrd
     })
     user.save()
+    const billal = users.find()
+    console.log(billal)
     res.send('data acceppted')
 })
 
@@ -97,6 +114,7 @@ app.get('*', (req, res) => {
     res.render('./layouts/404NotFound')
 })
 
-app.listen(app.config.port, () => {
-    console.log(`server running on http://localhost:${app.config.port}`)
+app.listen(app.config.port, app.config.host, () => {
+    console.log(`server running on http://${app.config.host}:${app.config.port}`)
 })
+
