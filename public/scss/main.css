@@ -139,6 +139,27 @@ footer {
   color: rebeccapurple;
 }
 
+.user {
+  padding: 10px;
+}
+.user > div {
+  padding: 20px;
+  margin: 5px;
+  border: 1px solid rgb(114, 114, 114);
+}
+.user > div > div {
+  width: 170px;
+  overflow: hidden;
+  margin: auto;
+  margin-bottom: 28px;
+}
+.user > div > div img {
+  width: 100%;
+}
+.user > div h1 {
+  font-size: 28px;
+}
+
 * {
   margin: 0px;
   padding: 0px;

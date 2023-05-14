@@ -20,7 +20,7 @@ const userInfo = mongoose.Schema({
         type: String
     },
     roll: {
-        type:Number
+        type: Number
     },
     email: {
         type: String
@@ -40,9 +40,6 @@ const userInfo = mongoose.Schema({
 
 const users = mongoose.model("User", userInfo)
 
-
-
-
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
@@ -61,21 +58,23 @@ app.get('/', (req, res) => {
     // fatch data 
     const getData = async () => {
         try {
-            const data = await users.find({roll:50})
+            const data = await users.find({})
+            const totalIndex = await users.find({}).countDocuments()
+            const lastindex = totalIndex-1
+            const i = lastindex
             res.render('./layouts/home', {
-                firstName: data[0].firstName,
-                lastName: data[0].lastName
+                firstName: data[i].firstName,
+                lastName: data[i].lastName,
+                rollNumber: data[i].roll,
+                emailAddress: data[i].email,
+                techCode: data[i].techcode,
+
             })
         } catch (err) {
             console.log(`error is : ${err}`)
         }
     }
-
     getData()
-
-
-
-   
 })
 
 app.get('/about', (req, res) => {
@@ -101,13 +100,12 @@ app.post('/register', (req, res) => {
     const user = new users({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        roll: req.body.roll,
         email: req.body.email,
         passowrd: req.body.passowrd
     })
     user.save()
-    const billal = users.find()
-    console.log(billal)
-    res.send('data acceppted')
+    res.redirect('/')
 })
 
 app.get('*', (req, res) => {
@@ -117,4 +115,3 @@ app.get('*', (req, res) => {
 app.listen(app.config.port, app.config.host, () => {
     console.log(`server running on http://${app.config.host}:${app.config.port}`)
 })
-

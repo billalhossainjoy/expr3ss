@@ -13,11 +13,17 @@
 <body>
     <%- include('partials/header') %>
     <div class="container">
-        <h1>Total users Already sign-up on your site</h1>
-        <h2>My name is <%= firstName %> <%= lastName %></h2>
-        <div class="usersHome">
-            <div class="user1">
-                <h1></h1>
+        <div class="users row">
+            <div class="user col-4">
+                <div>
+                    <div class="profilePic rounded-circle">
+                        <img class="" src="./images/user.png" alt="">
+                    </div>
+                    <h1 class="title"><%= firstName %> <%= lastName %></h1>
+                    <p>Roll: <%= rollNumber%></p>
+                    <p>Email: <%= emailAddress%></p>
+                    <p>Tech-Code: <%= techCode%></p>
+                </div>
             </div>
         </div>
     </div>
